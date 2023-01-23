@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\DeliveryAddress $model */
 
-$this->title = 'Create Delivery Address';
+$this->title = 'Создание адресов доставок';
 $this->params['breadcrumbs'][] = ['label' => 'Delivery Addresses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

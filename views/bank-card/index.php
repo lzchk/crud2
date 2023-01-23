@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\BankCardSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Bank Cards';
+$this->title = 'Банковские карты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bank-card-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Bank Card', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

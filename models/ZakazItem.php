@@ -47,10 +47,10 @@ class ZakazItem extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_purchase' => 'Id Purchase',
-            'id_product' => 'Id Product',
-            'price' => 'Price',
-            'count' => 'Count',
+            'id_purchase' => 'Id Заказа',
+            'id_product' => 'Id Товара',
+            'price' => 'Цена',
+            'count' => 'Количество',
         ];
     }
 

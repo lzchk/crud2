@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Like $model */
 
-$this->title = 'Create Like';
+$this->title = 'Создание избранного';
 $this->params['breadcrumbs'][] = ['label' => 'Likes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

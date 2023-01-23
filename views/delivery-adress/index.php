@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\DeliveryAdressSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Delivery Addresses';
+$this->title = 'Адреса доставок';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="delivery-address-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Delivery Address', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\ZakazItemSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Zakaz Items';
+$this->title = 'Заказ с товарами';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="zakaz-item-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Zakaz Item', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

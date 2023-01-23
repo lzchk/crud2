@@ -10,7 +10,6 @@ use yii\db\Expression;
  * This is the model class for table "purchase".
  *
  * @property int $id
- * @property int $id_product
  * @property string $delivery_method
  * @property string $full_price
  * @property int $id_delivery
@@ -38,13 +37,12 @@ class Purchase extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_product', 'delivery_method', 'full_price', 'id_delivery', 'id_card', 'full_sale'], 'required'],
-            [['id_product', 'id_delivery', 'id_card'], 'integer'],
+            [['delivery_method', 'full_price', 'id_delivery', 'id_card', 'full_sale'], 'required'],
+            [['id_delivery', 'id_card'], 'integer'],
             [['delivery_method'], 'string'],
             [['created_at'], 'safe'],
             [['full_price'], 'string', 'max' => 10],
             [['full_sale'], 'string', 'max' => 20],
-            [['id_product'], 'exist', 'skipOnError' => true, 'targetClass' => Product::class, 'targetAttribute' => ['id_product' => 'id']],
             [['id_card'], 'exist', 'skipOnError' => true, 'targetClass' => BankCard::class, 'targetAttribute' => ['id_card' => 'id']],
             [['id_delivery'], 'exist', 'skipOnError' => true, 'targetClass' => DeliveryAddress::class, 'targetAttribute' => ['id_delivery' => 'id']],
         ];
@@ -57,13 +55,12 @@ class Purchase extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_product' => 'Id Продукта',
             'delivery_method' => 'Метод доставки',
             'full_price' => 'Цена',
             'id_delivery' => 'Id Доставки',
             'id_card' => 'Карта',
             'created_at' => 'Создание',
-            'full_sale' => 'Сумма',
+            'full_sale' => 'Скидка',
         ];
     }
 
@@ -97,15 +94,5 @@ class Purchase extends \yii\db\ActiveRecord
     public function getDelivery()
     {
         return $this->hasOne(DeliveryAddress::class, ['id' => 'id_delivery']);
-    }
-
-    /**
-     * Gets query for [[Product]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduct()
-    {
-        return $this->hasOne(Product::class, ['id' => 'id_product']);
     }
 }
