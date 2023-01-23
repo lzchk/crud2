@@ -3,6 +3,10 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
 
 /**
  * This is the model class for table "comment".
@@ -13,6 +17,7 @@ use Yii;
  * @property int $rating
  * @property string $created_at
  * @property string $updated_at
+ * @property string $id_prod
  *
  * @property Product[] $products
  * @property User $user
@@ -33,11 +38,12 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'text', 'rating', 'created_at', 'updated_at'], 'required'],
+            [['id_user', 'rating', 'id_prod'], 'required'],
             [['id_user', 'rating'], 'integer'],
             [['text'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['id_user' => 'id']],
+            [['id_prod'], 'exist', 'skipOnError' => true, 'targetClass' => Product::class, 'targetAttribute' => ['id_prod' => 'id']],
         ];
     }
 
@@ -48,13 +54,15 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Id User',
-            'text' => 'Text',
-            'rating' => 'Rating',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id_user' => 'Пользователь',
+            'text' => 'Текст',
+            'rating' => 'Рейтинг',
+            'created_at' => 'Опубликован',
+            'updated_at' => 'Изменен',
+            'id_prod' => 'Продукт'
         ];
     }
+
 
     /**
      * Gets query for [[Products]].
@@ -75,4 +83,23 @@ class Comment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'id_user']);
     }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),            
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,            
+                'value' => new Expression('NOW()'),
+            ],
+            [
+                'class' => TimestampBehavior::className(),            
+                'createdAtAttribute' => false,
+                'updatedAtAttribute' => 'updated_at',          
+                'value' => new Expression('NOW()'),
+            ],     
+        ];
+    }
 }
+

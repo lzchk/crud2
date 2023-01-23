@@ -18,7 +18,7 @@ class ImgProductSearch extends ImgProduct
     {
         return [
             [['id', 'id_product'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'path'], 'safe'],
         ];
     }
 

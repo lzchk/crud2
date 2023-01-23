@@ -18,6 +18,7 @@ use Yii;
  * @property string $avatar
  * @property float $currency валюта
  * @property string $role
+ * @property string $name
  *
  * @property BankCard[] $bankCards
  * @property Basket[] $baskets
@@ -52,6 +53,7 @@ class UserB extends \yii\db\ActiveRecord
             [['sex'], 'string'],
             [['currency'], 'string', 'max' => 12],
             [['email'], 'string', 'max' => 120],
+            [['name'], 'string', 'max' => 120],
             [['login', 'password'], 'string', 'max' => 50],
             [['avatar'], 'string', 'max' => 300],
             [['role'], 'string', 'max' => 20],
@@ -66,16 +68,17 @@ class UserB extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'name' => 'ФИО',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'login' => 'Login',
-            'password' => 'Password',
-            'id_city' => 'City',
-            'date_of_birth' => 'Date Of Birth',
-            'sex' => 'Sex',
-            'avatar' => 'Avatar',
-            'currency' => 'валюта',
-            'role' => 'Role',
+            'phone' => 'Телефон',
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'id_city' => 'Город',
+            'date_of_birth' => 'День рождения',
+            'sex' => 'Пол',
+            'avatar' => 'Автар',
+            'currency' => 'Валюта',
+            'role' => 'Роль',
         ];
     }
 

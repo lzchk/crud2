@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "purchase".
@@ -36,7 +38,7 @@ class Purchase extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_product', 'delivery_method', 'full_price', 'id_delivery', 'id_card', 'created_at', 'full_sale'], 'required'],
+            [['id_product', 'delivery_method', 'full_price', 'id_delivery', 'id_card', 'full_sale'], 'required'],
             [['id_product', 'id_delivery', 'id_card'], 'integer'],
             [['delivery_method'], 'string'],
             [['created_at'], 'safe'],
@@ -55,13 +57,25 @@ class Purchase extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_product' => 'Id Product',
-            'delivery_method' => 'Delivery Method',
-            'full_price' => 'Full Price',
-            'id_delivery' => 'Id Delivery',
-            'id_card' => 'Id Card',
-            'created_at' => 'Created At',
-            'full_sale' => 'Full Sale',
+            'id_product' => 'Id Продукта',
+            'delivery_method' => 'Метод доставки',
+            'full_price' => 'Цена',
+            'id_delivery' => 'Id Доставки',
+            'id_card' => 'Карта',
+            'created_at' => 'Создание',
+            'full_sale' => 'Сумма',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

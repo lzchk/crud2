@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "company".
@@ -36,8 +38,8 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'name', 'inn', 'avatar', 'created_at', 'updated_at', 'created_by'], 'required'],
-            [['id_user', 'inn', 'avatar', 'created_by'], 'integer'],
+            [['id_user', 'name', 'inn', 'avatar', 'created_by'], 'required'],
+            [['id_user', 'inn', 'avatar'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 120],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
@@ -52,13 +54,31 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Id User',
-            'name' => 'Name',
-            'inn' => 'Inn',
-            'avatar' => 'Avatar',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
+            'id_user' => 'Id Пользователя',
+            'name' => 'Название',
+            'inn' => 'ИНН',
+            'avatar' => 'Аватар',
+            'created_at' => 'Создание',
+            'updated_at' => 'Обновление',
+            'created_by' => 'Создатель',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => false,
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

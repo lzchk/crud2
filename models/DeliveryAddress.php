@@ -51,13 +51,13 @@ class DeliveryAddress extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Id User',
-            'name' => 'Name',
-            'id_city' => 'Id City',
-            'street' => 'Street',
+            'id_user' => 'Id Пользователя',
+            'name' => 'Название',
+            'id_city' => 'Id Города',
+            'street' => 'Улица',
             'house_number' => 'Номер дома',
-            'flat_number' => 'Flat Number',
-            'comment' => 'Comment',
+            'flat_number' => 'Номер квартиры',
+            'comment' => 'Комментарий',
         ];
     }
 

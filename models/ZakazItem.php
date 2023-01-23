@@ -5,23 +5,25 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "basket".
+ * This is the model class for table "zakaz_item".
  *
  * @property int $id
- * @property int $id_user
+ * @property int $id_purchase
  * @property int $id_product
+ * @property float $price
+ * @property int $count
  *
  * @property Product $product
- * @property User $user
+ * @property Purchase $purchase
  */
-class Basket extends \yii\db\ActiveRecord
+class ZakazItem extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'basket';
+        return 'zakaz_item';
     }
 
     /**
@@ -30,10 +32,11 @@ class Basket extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'id_product'], 'required'],
-            [['id_user', 'id_product'], 'integer'],
+            [['id_purchase', 'id_product', 'price', 'count'], 'required'],
+            [['id_purchase', 'id_product', 'count'], 'integer'],
+            [['price'], 'number'],
             [['id_product'], 'exist', 'skipOnError' => true, 'targetClass' => Product::class, 'targetAttribute' => ['id_product' => 'id']],
-            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['id_user' => 'id']],
+            [['id_purchase'], 'exist', 'skipOnError' => true, 'targetClass' => Purchase::class, 'targetAttribute' => ['id_purchase' => 'id']],
         ];
     }
 
@@ -44,8 +47,10 @@ class Basket extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Id Пользователя',
-            'id_product' => 'Id Продукта',
+            'id_purchase' => 'Id Purchase',
+            'id_product' => 'Id Product',
+            'price' => 'Price',
+            'count' => 'Count',
         ];
     }
 
@@ -60,12 +65,12 @@ class Basket extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[User]].
+     * Gets query for [[Purchase]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getPurchase()
     {
-        return $this->hasOne(User::class, ['id' => 'id_user']);
+        return $this->hasOne(Purchase::class, ['id' => 'id_purchase']);
     }
 }

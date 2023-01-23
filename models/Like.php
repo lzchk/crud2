@@ -44,8 +44,8 @@ class Like extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_product' => 'Id Product',
-            'id_user' => 'Id User',
+            'id_product' => 'Id Продукта',
+            'id_user' => 'Id Пользователя',
         ];
     }
 

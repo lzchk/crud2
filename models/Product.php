@@ -20,7 +20,6 @@ use Yii;
  * @property int $created_by
  * @property string $price
  * @property int $id_category
- * @property int $id_comment
  *
  * @property Basket[] $baskets
  * @property Category $category
@@ -47,8 +46,8 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'sale_price', 'sale_flag', 'description', 'characteristic', 'id_company', 'rating', 'created_at', 'updated_at', 'created_by', 'price', 'id_category', 'id_comment'], 'required'],
-            [['sale_flag', 'id_company', 'created_by', 'id_category', 'id_comment'], 'integer'],
+            [['name', 'sale_price', 'sale_flag', 'description', 'characteristic', 'id_company', 'rating', 'created_at', 'updated_at', 'created_by', 'price', 'id_category'], 'required'],
+            [['sale_flag', 'id_company', 'created_by', 'id_category'], 'integer'],
             [['description', 'characteristic'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
@@ -57,8 +56,7 @@ class Product extends \yii\db\ActiveRecord
             [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['id_category' => 'id']],
             [['id_company'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['id_company' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
-            [['id_comment'], 'exist', 'skipOnError' => true, 'targetClass' => Comment::class, 'targetAttribute' => ['id_comment' => 'id']],
-        ];
+       ];
     }
 
     /**
@@ -68,19 +66,18 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'sale_price' => 'Sale Price',
+            'name' => 'Название',
+            'sale_price' => 'Акционная цена',
             'sale_flag' => 'флаг - является ли товар акционным',
-            'description' => 'Description',
-            'characteristic' => 'Characteristic',
-            'id_company' => 'Id Company',
-            'rating' => 'Rating',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
-            'price' => 'Price',
-            'id_category' => 'Id Category',
-            'id_comment' => 'Id Comment',
+            'description' => 'Описание',
+            'characteristic' => 'Характеристика',
+            'id_company' => 'Id Компании',
+            'rating' => 'Рейтинг',
+            'created_at' => 'Создание',
+            'updated_at' => 'Обновление',
+            'created_by' => 'Создатель',
+            'price' => 'Цена',
+            'id_category' => 'Id Категории',
         ];
     }
 
@@ -102,16 +99,6 @@ class Product extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'id_category']);
-    }
-
-    /**
-     * Gets query for [[Comment]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getComment()
-    {
-        return $this->hasOne(Comment::class, ['id' => 'id_comment']);
     }
 
     /**
