@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_user')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\UserB::find()->all(), 'id','login')) ?>
+    <?= $form->field($model, 'id_user')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\User::find()->all(), 'id','login')) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -21,7 +21,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'avatar')->textInput() ?>
 
-    <?= $form->field($model, 'created_by')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\UserB::find()->all(), 'id','login')) ?>
+    <?= $form->field($model, 'created_by')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\User::find()->all(), 'id','login')) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

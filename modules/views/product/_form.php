@@ -31,7 +31,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'updated_at')->textInput() ?>
 
-    <?= $form->field($model, 'created_by')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\UserB::find()->all(), 'id','login')) ?>
+    <?= $form->field($model, 'created_by')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\User::find()->all(), 'id','login')) ?>
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 

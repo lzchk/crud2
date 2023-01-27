@@ -44,8 +44,8 @@ class BankCard extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Id User',
-            'name' => 'Name',
+            'id_user' => 'Id Пользователя',
+            'name' => 'Номер',
         ];
     }
 
